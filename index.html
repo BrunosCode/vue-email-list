@@ -8,12 +8,13 @@
     <title>Vue Email List</title>
 </head>
 <body>
-    <main id="root">
-        <ul>
+    <main id="root" class="c-main">
+        <h1>Emails printed from an API</h1>
+        <ol>
             <li v-for="(email, i) in emailList" :key="i">
                 {{email}}
             </li>
-        </ul>
+        </ol>
     </main>
     
     <!-- Vue development version -->

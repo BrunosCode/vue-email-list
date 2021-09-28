@@ -15,20 +15,27 @@ const app = new Vue (
 
         },
         mounted() {
+            // store all the promises in an array
             let promiseList = [];
             for(let i = 0; i < 10; i++) {
-                promiseList.push(axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
-                    .then((response) => {
-                        return response.data.response;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    }))
+                promiseList.push(
+                    axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
+                        .then((response) => {
+                            return response.data.response;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                )
             }
+            // when the promises are fullfilled, store the results in data
             Promise.all(promiseList)
                 .then((results) => {
                     this.emailList = [...results];
-            })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
     }
 )
